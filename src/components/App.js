@@ -10,10 +10,8 @@ const App = () => {
     setInput(inputValue);
   };
 
-  const handleSubmit = () => {
-    setTodos(prev => {
-      return [...prev, input];
-    });
+  const addTodo = () => {
+    setTodos([...todos, input]);
     setInput('');
   };
 
@@ -21,11 +19,13 @@ const App = () => {
     <div className='App'>
       <h1>Todo App</h1>
       <input type='text' value={input} onChange={handleOnChange} />
-      <button onClick={handleSubmit}>Submit</button>
+      <button onClick={addTodo}>Add Todo</button>
 
-      {todos.map(todo => (
-        <p>{todo}</p>
-      ))}
+      <ul>
+        {todos.map(todo => (
+          <li>{todo}</li>
+        ))}
+      </ul>
     </div>
   );
 };
