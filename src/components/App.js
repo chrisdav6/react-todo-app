@@ -15,15 +15,24 @@ const App = () => {
     setInput('');
   };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    if (e.keyCode === 13) {
+      addTodo();
+    }
+  };
+
   return (
     <div className='App'>
       <h1>Todo App</h1>
-      <input type='text' value={input} onChange={handleOnChange} />
-      <button onClick={addTodo}>Add Todo</button>
-
+      <form onSubmit={handleSubmit}>
+        <input type='text' value={input} onChange={handleOnChange} />
+        <button onClick={addTodo}>Add Todo</button>
+      </form>
       <ul>
-        {todos.map(todo => (
-          <li>{todo}</li>
+        {todos.map((todo, idx) => (
+          <li key={idx}>{todo}</li>
         ))}
       </ul>
     </div>
