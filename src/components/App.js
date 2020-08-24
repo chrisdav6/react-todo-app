@@ -9,7 +9,6 @@ import {
 } from '@material-ui/core';
 import db from '../firebase';
 import firebase from 'firebase';
-import { firebaseConfig } from '../firebaseConfig';
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -17,9 +16,11 @@ const App = () => {
 
   //When app loads, listen to db and fetch new todos as they are added and removed
   useEffect(() => {
-    db.collection('todos').onSnapshot(snapshot => {
-      setTodos(snapshot.docs.map(doc => doc.data().todo));
-    });
+    db.collection('todos')
+      .orderBy('timestamp', 'desc')
+      .onSnapshot(snapshot => {
+        setTodos(snapshot.docs.map(doc => doc.data().todo));
+      });
   }, []);
 
   const handleOnChange = e => {
