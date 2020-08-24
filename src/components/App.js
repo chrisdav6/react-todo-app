@@ -28,6 +28,7 @@ const App = () => {
   //Handles form submit with enter key and adding todo and clearing input
   const addTodo = e => {
     e.preventDefault();
+    db.collection('todos').add({ todo: input });
     setTodos([...todos, input]);
     setInput('');
   };
