@@ -1,13 +1,11 @@
 import React from 'react';
-import { List, ListItem, ListItemText } from '@material-ui/core';
+import { ListItem, ListItemText } from '@material-ui/core';
 
 const Todo = ({ todo }) => {
   return (
-    <List>
-      <ListItem>
-        <ListItemText primary='Todo' secondary={todo} />
-      </ListItem>
-    </List>
+    <ListItem className='Todo'>
+      <ListItemText primary={todo} secondary='Deadline - tomorrow 6am' />
+    </ListItem>
   );
 };
 

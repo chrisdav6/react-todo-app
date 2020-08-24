@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Todo from './Todo';
-import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
-import { firebaseConfig } from '../firebase';
+import {
+  List,
+  Button,
+  FormControl,
+  InputLabel,
+  Input
+} from '@material-ui/core';
+import db from '../firebase';
 
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [input, setInput] = useState('');
+
+  //When app loads, listen to db and fetch new todos as they are added and removed
+  useEffect(() => {
+    db.collection('todos').onSnapshot(snapshot => {
+      setTodos(snapshot.docs.map(doc => doc.data().todo));
+    });
+  }, []);
 
   const handleOnChange = e => {
     const inputValue = e.target.value;
@@ -44,11 +57,11 @@ const App = () => {
         </Button>
       </form>
 
-      <ul>
+      <List className='TodoList'>
         {todos.map((todo, idx) => (
           <Todo key={idx} todo={todo} />
         ))}
-      </ul>
+      </List>
     </div>
   );
 };
