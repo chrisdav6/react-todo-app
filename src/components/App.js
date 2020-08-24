@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button } from '@material-ui/core';
 import { firebaseConfig } from '../firebase';
 
 const App = () => {
@@ -10,12 +11,14 @@ const App = () => {
     setInput(inputValue);
   };
 
-  //Handles form submit with enter key and adding todo
-
+  //Handles form submit with enter key and adding todo and clearing input
   const addTodo = e => {
     e.preventDefault();
-    setTodos([...todos, input]);
-    setInput('');
+
+    if (input) {
+      setTodos([...todos, input]);
+      setInput('');
+    }
   };
 
   return (
@@ -23,9 +26,14 @@ const App = () => {
       <h1>Todo App</h1>
       <form>
         <input type='text' value={input} onChange={handleOnChange} />
-        <button type='submit' onClick={addTodo}>
+        <Button
+          variant='contained'
+          color='primary'
+          type='submit'
+          onClick={addTodo}
+        >
           Add Todo
-        </button>
+        </Button>
       </form>
       <ul>
         {todos.map((todo, idx) => (
