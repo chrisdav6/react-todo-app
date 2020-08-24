@@ -8,6 +8,8 @@ import {
   Input
 } from '@material-ui/core';
 import db from '../firebase';
+import firebase from 'firebase';
+import { firebaseConfig } from '../firebaseConfig';
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -28,7 +30,10 @@ const App = () => {
   //Handles form submit with enter key and adding todo and clearing input
   const addTodo = e => {
     e.preventDefault();
-    db.collection('todos').add({ todo: input });
+    db.collection('todos').add({
+      todo: input,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
     setTodos([...todos, input]);
     setInput('');
   };
