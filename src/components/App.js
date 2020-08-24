@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Todo from './Todo';
 import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
 import { firebaseConfig } from '../firebase';
 
@@ -42,9 +43,10 @@ const App = () => {
           Add Todo
         </Button>
       </form>
+
       <ul>
         {todos.map((todo, idx) => (
-          <li key={idx}>{todo}</li>
+          <Todo key={idx} todo={todo} />
         ))}
       </ul>
     </div>
