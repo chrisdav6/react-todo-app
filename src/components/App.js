@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from '@material-ui/core';
+import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
 import { firebaseConfig } from '../firebase';
 
 const App = () => {
@@ -21,8 +21,17 @@ const App = () => {
   return (
     <div className='App'>
       <h1>Todo App</h1>
+
       <form>
-        <input type='text' value={input} onChange={handleOnChange} />
+        <FormControl>
+          <InputLabel htmlFor='todo'>Todo</InputLabel>
+          <Input
+            type='text'
+            id='todo'
+            value={input}
+            onChange={handleOnChange}
+          />
+        </FormControl>
         <Button
           disabled={!input}
           variant='contained'
