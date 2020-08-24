@@ -14,11 +14,8 @@ const App = () => {
   //Handles form submit with enter key and adding todo and clearing input
   const addTodo = e => {
     e.preventDefault();
-
-    if (input) {
-      setTodos([...todos, input]);
-      setInput('');
-    }
+    setTodos([...todos, input]);
+    setInput('');
   };
 
   return (
@@ -27,6 +24,7 @@ const App = () => {
       <form>
         <input type='text' value={input} onChange={handleOnChange} />
         <Button
+          disabled={!input}
           variant='contained'
           color='primary'
           type='submit'
