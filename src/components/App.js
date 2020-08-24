@@ -10,25 +10,22 @@ const App = () => {
     setInput(inputValue);
   };
 
-  const addTodo = () => {
+  //Handles form submit with enter key and adding todo
+
+  const addTodo = e => {
+    e.preventDefault();
     setTodos([...todos, input]);
     setInput('');
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    if (e.keyCode === 13) {
-      addTodo();
-    }
   };
 
   return (
     <div className='App'>
       <h1>Todo App</h1>
-      <form onSubmit={handleSubmit}>
+      <form>
         <input type='text' value={input} onChange={handleOnChange} />
-        <button onClick={addTodo}>Add Todo</button>
+        <button type='submit' onClick={addTodo}>
+          Add Todo
+        </button>
       </form>
       <ul>
         {todos.map((todo, idx) => (
