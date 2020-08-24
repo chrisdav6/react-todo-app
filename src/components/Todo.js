@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, ListItem, ListItemText } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 import db from '../firebase';
 
 const Todo = ({ todo }) => {
@@ -10,7 +11,9 @@ const Todo = ({ todo }) => {
   return (
     <ListItem className='Todo'>
       <ListItemText primary={todo.todo} secondary='Deadline - tomorrow 6am' />
-      <Button onClick={handleDelete}>Delete</Button>
+      <Button variant='contained' color='secondary' onClick={handleDelete}>
+        <DeleteIcon /> Delete
+      </Button>
     </ListItem>
   );
 };
