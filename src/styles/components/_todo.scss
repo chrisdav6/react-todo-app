@@ -1,3 +1,13 @@
 .Todo {
   border-bottom: 1px solid rgb(219, 219, 219);
 }
+
+.Todo__modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Todo__modal__input {
+  width: 100%;
+  margin-bottom: 1.5em;
+}
